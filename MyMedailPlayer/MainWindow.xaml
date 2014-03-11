@@ -1,0 +1,108 @@
+﻿<Window x:Class="MyMedailPlayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="450" Width="300" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" Loaded="Window_Loaded" Icon="Images\MM_32.ico">
+    <Window.Resources>
+        <!--Slider的样式-->
+        <Style TargetType="{x:Type Slider}">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="IsSnapToTickEnabled" Value="True"/>
+            <Setter Property="TickPlacement" Value="BottomRight"/>
+            <Setter Property="TickFrequency" Value="0.2"/>
+            <Setter Property="AutoToolTipPrecision" Value="1"/>
+            <Setter Property="AutoToolTipPlacement" Value="BottomRight"/>
+            <Setter Property="IsDirectionReversed" Value="False"/>
+            <Setter Property="IsMoveToPointEnabled" Value="False"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" Opacity="0.7" ShadowDepth="7"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Border CornerRadius="5" BorderThickness="0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF070741" Offset="0"></GradientStop>
+                    <GradientStop Color="AntiqueWhite" Offset="0.415"></GradientStop>
+                    <GradientStop Color="#FF03032B" Offset="0.989"></GradientStop>
+                    <GradientStop Color="#FF06062B" Offset="0.204"></GradientStop>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Label Content="MMPlayer" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+        <Image Source="Images/close0.png" Width="22" Height="22" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,0,0" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" Tag="close" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+        <Image Source="Images/mini0.png" Width="22" Height="22" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,25,0" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" Tag="mini" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+        <Image x:Name="picBoxConver" Width="85" Height="85" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,25,5,5"></Image>
+        <Label Content="迷你音乐播放器" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,25,5,5"></Label>
+        <Label Content="音量:" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,75,5,5"></Label>
+        <Label Content="00:00 / 00:00"  FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,50,5,5"></Label>
+        
+        <Button x:Name="Btn_Play" Tag="play" ToolTip="播放" Width="28" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,75,5,5" Click="Btn_Play_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border>
+                        <Image Name="img" Source="/MyMedailPlayer;component/Images/play_on.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="img" Property="Source" Value="/MyMedailPlayer;component/Images/play_down.png">
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="Btn_Preview" ToolTip="上一首" Width="28" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,75,5,5" Click="Btn_Preview_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border>
+                        <Image Name="img" Source="/MyMedailPlayer;component/Images/preview_on.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="img" Property="Source" Value="/MyMedailPlayer;component/Images/preview_down.png">
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button  x:Name="Btn_Next" ToolTip="下一首" Width="28" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160,75,5,5" Click="Btn_Next_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border>
+                        <Image Name="img" Source="/MyMedailPlayer;component/Images/next_on.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="img" Property="Source" Value="/MyMedailPlayer;component/Images/next_down.png">
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="Btn_AddMusic" ToolTip="添加" Width="28" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="190,75,5,5" Click="Btn_AddMusic_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border>
+                        <Image Name="img" Source="/MyMedailPlayer;component/Images/list_on.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="img" Property="Source" Value="/MyMedailPlayer;component/Images/list_down.png">
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+       
+        <Slider x:Name="volumeSlider"  Orientation="Vertical" Minimum="0" Maximum="1" Value="0.5" Margin="260,30,5,5" Height="75" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <ListBox x:Name="listView" Height="300" Margin="0,120,0,0" MouseDoubleClick="listView_MouseDoubleClick" />
+        <MediaElement Name="McMediaElement" Volume="{Binding ElementName=volumeSlider,Path=Value}"  LoadedBehavior="Manual" MediaEnded="McMediaElement_MediaEnded" />
+    </Grid>
+</Window>
